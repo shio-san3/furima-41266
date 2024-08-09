@@ -1,24 +1,45 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| name               | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| first_name         | string | null: false               |
+| last_name          | string | null: false               |
+| first_name_kana    | string | null: false               |
+| last_name_kana     | string | null: false               |
+| birth_date         | date   | null: false               |
 
-* Ruby version
+  has_many :products, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
-* System dependencies
+## products テーブル
 
-* Configuration
+| Column        | Type        | Options                        |
+| ------------- | ----------- | ------------------------------ |
+| name          | string      | null: false                    |
+| price         | decimal     | null: false                    |
+| description   | text        | null: false                    |
+| status        | string      | null: false                    |
+| size          | string      | null: false                    |
+| user_id       | references  | null: false, foreign_key: true |
 
-* Database creation
+  belongs_to :user
+  has_many :orders, dependent: :destroy
 
-* Database initialization
+## orders テーブル
 
-* How to run the test suite
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| order_id    | string     | null: false,                   |
+| product_id  | references | null: false, foreign_key: true |
+| user_id     | references | null: false, foreign_key: true |
+| quantity    | integer    | null: false,                   |
+| total_price | decimal    | null: false,                   |
+| order_date  | date       | null: false,                   |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  belongs_to :user
+  belongs_to :product
