@@ -46,14 +46,14 @@
 
   ## shipping_addresses テーブル
 
-| Column           | Type       | Options     |
-| ---------------- | ---------- | ----------- |
-| order            | references | null: false |
-| postal_code      | string     | null: false |
-| shipping_area_id | string     | null: false |
-| city             | string     | null: false |
-| address          | string     | null: false |
-| building         | string     |             |
-| phone            | string     | null: false |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| order            | references | null: false, foreign_key: true |
+| postal_code      | string     | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| city             | string     | null: false                    |
+| address          | string     | null: false                    |
+| building         | string     |                                |
+| phone            | string     | null: false                    |
 
   belongs_to :order
