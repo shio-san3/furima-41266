@@ -26,8 +26,8 @@
 | condition_id       | integer     | null: false                    |
 | user               | references  | null: false, foreign_key: true |
 | shipping_area_id   | integer     | null: false                    |
-| shipping_price     | integer     | null: false                    |
-| shipping_date      | integer     | null: false                    |
+| shipping_price_id  | integer     | null: false                    |
+| shipping_date_id   | integer     | null: false                    |
 | shipping_method_id | integer     | null: false             |
 
   belongs_to :user
@@ -46,14 +46,14 @@
 
   ## shipping_addresses テーブル
 
-| Column      | Type       | Options     |
-| ----------- | ---------- | ----------- |
-| order       | references | null: false |
-| postal_code | string     | null: false |
-| prefecture  | string     | null: false |
-| city        | string     | null: false |
-| address     | string     | null: false |
-| building    | string     |             |
-| phone       | string     | null: false |
+| Column           | Type       | Options     |
+| ---------------- | ---------- | ----------- |
+| order            | references | null: false |
+| postal_code      | string     | null: false |
+| shipping_area_id | string     | null: false |
+| city             | string     | null: false |
+| address          | string     | null: false |
+| building         | string     |             |
+| phone            | string     | null: false |
 
   belongs_to :order
