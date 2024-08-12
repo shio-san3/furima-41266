@@ -23,16 +23,15 @@
 | name               | string      | null: false                    |
 | price              | integer     | null: false                    |
 | description        | text        | null: false                    |
-| condition_id       | string      | null: false                    |
-| size_id            | string      | null: false                    |
+| condition_id       | integer     | null: false                    |
 | user               | references  | null: false, foreign_key: true |
-| shipping_area_id   | string      | null: false, foreign_key: true |
-| shipping_price     | string      | null: false                    |
-| shipping_date      | string      | null: false                    |
-| shipping_method_id | string      | null: false             |
+| shipping_area_id   | integer     | null: false                    |
+| shipping_price     | integer     | null: false                    |
+| shipping_date      | integer     | null: false                    |
+| shipping_method_id | integer     | null: false             |
 
   belongs_to :user
-  has_one :orders
+  has_one :order
 
 ## orders テーブル
 
