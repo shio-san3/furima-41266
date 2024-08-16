@@ -22,6 +22,8 @@ class User < ApplicationRecord
   attr_accessor :password_confirmation
   # パスワードとパスワード確認の一致確認
   validate :passwords_must_match
+  # 重複するエラーメッセージを除去
+  after_validation :remove_duplicate_errors
 
   private
 
@@ -29,6 +31,16 @@ class User < ApplicationRecord
   def passwords_must_match
     if password != password_confirmation
       errors.add(:password_confirmation, "does not match password")
+    end
+  end
+  def remove_duplicate_errors
+    unique_errors = errors.uniq do |error|
+      [error.attribute, error.type]
+    end
+
+    errors.clear
+    unique_errors.each do |error|
+      errors.add(error.attribute, error.message)
     end
   end
 end
