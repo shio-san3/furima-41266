@@ -6,8 +6,6 @@ class User < ApplicationRecord
          
   # ニックネームのバリデーション
   validates :name, presence: true
-  # メールアドレスのバリデーション
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "must include @" }
   # パスワードのバリデーション
   validates :password, presence: true, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: "must include both letters and numbers" }
   # お名前(全角)のバリデーション
@@ -36,11 +34,6 @@ class User < ApplicationRecord
   def remove_duplicate_errors
     unique_errors = errors.uniq do |error|
       [error.attribute, error.type]
-    end
-
-    errors.clear
-    unique_errors.each do |error|
-      errors.add(error.attribute, error.message)
     end
   end
 end
