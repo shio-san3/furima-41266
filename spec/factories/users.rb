@@ -8,10 +8,6 @@ FactoryBot.define do
     first_name { "太郎" }
     last_name_kana { "ヤマダ" }
     first_name_kana { "タロウ" }
-    birthday { "1990-01-01" }
+    birth_date { "1990-01-01" } # `birthday` ではなく `birth_date` が正しいと仮定
   end
-end
-
-before do
-  @user = FactoryBot.build(:user)
 end
