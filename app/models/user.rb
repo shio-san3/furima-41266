@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   # ニックネームのバリデーション
-  validates :name, presence: true, length: { maximum: 6 }
+  validates :name, presence: true
   # パスワードのバリデーション
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: "must include both letters and numbers" }
   # お名前(全角)のバリデーション
