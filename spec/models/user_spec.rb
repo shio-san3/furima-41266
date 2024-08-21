@@ -12,10 +12,6 @@ RSpec.describe User, type: :model do
   end
 
   context '異常系' do
-    before do
-      @user = build(:user)
-    end
-
     it 'nameが空では登録できない' do
       @user.name = ''
       @user.valid?
